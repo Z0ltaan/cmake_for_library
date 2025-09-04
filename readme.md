@@ -1,6 +1,6 @@
 # Description
 
-Simple CMakeLists.txt for building static library
+Simple CMakeLists.txt for building static library for linux
 
 # Setup
 
