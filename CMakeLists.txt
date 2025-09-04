@@ -1,0 +1,57 @@
+cmake_minimum_required(VERSION 3.22)
+project(blank VERSION 1.0.0 LANGUAGES CXX)
+
+file(GLOB src_files ${CMAKE_SOURCE_DIR}/src/*.cpp)
+add_library(${PROJECT_NAME} ${src_files})
+
+set_target_properties(${PROJECT_NAME} PROPERTIES
+  CMAKE_CXX_STANDARD 14
+  CMAKE_CXX_STANDARD_REQUIRED ON
+)
+
+include(GNUInstallDirs)
+
+target_include_directories(${PROJECT_NAME} PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+)
+
+include(CMakePackageConfigHelpers)
+
+configure_package_config_file(${CMAKE_CURRENT_SOURCE_DIR}/config.cmake.in
+  "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+  INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}
+)
+
+  write_basic_package_version_file(
+    ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake
+    VERSION "${PORTAUDIO_VERSION}"
+    COMPATIBILITY SameMajorVersion
+  )
+
+install(EXPORT ${PROJECT_NAME}Targets
+  FILE ${PROJECT_NAME}Targets.cmake
+  NAMESPACE LodePNG::
+  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}
+)
+
+export(TARGETS ${PROJECT_NAME} 
+  FILE ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Targets.cmake
+)
+install(FILES
+  ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake
+  ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake
+  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}
+)
+
+install(TARGETS ${PROJECT_NAME}
+  EXPORT ${PROJECT_NAME}Targets
+  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+  INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+)
+
+# Define public headers and set install path
+file(GLOB public_headers ${CMAKE_SOURCE_DIR}/include/*.h)
+install(FILES ${public_headers} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
