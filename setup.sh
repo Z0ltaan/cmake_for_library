@@ -16,5 +16,5 @@ exitOnError $# 1
 project_path="$(dirname $0)"
 project_name="$1"
 
-sed -i "s/blank/${project_name}/g" ${project_path}${project_name}/CMakeLists.txt
-sed -i "s/blank/${project_name}/g" ${project_path}${project_name}/config.cmake.in
+sed -i "s/blank/${project_name}/g" ${project_path}/CMakeLists.txt
+sed -i "s/blank/${project_name}/g" ${project_path}/config.cmake.in
