@@ -31,7 +31,7 @@ configure_package_config_file(${CMAKE_CURRENT_SOURCE_DIR}/config.cmake.in
 
 install(EXPORT ${PROJECT_NAME}Targets
   FILE ${PROJECT_NAME}Targets.cmake
-  NAMESPACE LodePNG::
+  NAMESPACE blank::
   DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}
 )
 

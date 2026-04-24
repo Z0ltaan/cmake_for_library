@@ -1,20 +1,17 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-function exitOnError() {
-  if [ $# -ne 2 ]; then
-    echo "Wrong args in exit"
-    exit 1
+if [ $# -eq 0 ]; then
+  echo "usage: setup.sh <project_name> <optional_current_project_name>"
+else
+  script_dir="$(dirname $0)"
+  project_name="$1"
+  current_name="blank"
+
+  if [ $# -ne 1 ]; then
+    current_name=$2
   fi
+  echo "changing ${current_name} to ${project_name}"
 
-  if [ $1 -ne $2 ]; then
-    echo "Wrong args"
-    exit 1
-  fi
-}
-
-exitOnError $# 1
-project_path="$(dirname $0)"
-project_name="$1"
-
-sed -i "s/blank/${project_name}/g" ${project_path}/CMakeLists.txt
-sed -i "s/blank/${project_name}/g" ${project_path}/config.cmake.in
+  sed -i "s/${current_name}/${project_name}/g" ${script_dir}/CMakeLists.txt
+  sed -i "s/${current_name}/${project_name}/g" ${script_dir}/config.cmake.in
+fi
