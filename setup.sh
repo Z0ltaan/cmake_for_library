@@ -13,5 +13,4 @@ else
   echo "changing ${current_name} to ${project_name}"
 
   sed -i "s/${current_name}/${project_name}/g" ${script_dir}/CMakeLists.txt
-  sed -i "s/${current_name}/${project_name}/g" ${script_dir}/config.cmake.in
 fi
