@@ -53,7 +53,7 @@ If installed to a non-standard prefix, point CMake at it:
 cmake -S . -B build -DCMAKE_PREFIX_PATH="$HOME/.local"
 ```
 
-# TODO:
+## TODO:
 
 - Make it build on macOS and Windows too
 - add test option
