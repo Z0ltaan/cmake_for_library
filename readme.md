@@ -2,7 +2,7 @@
 
 A minimal example of a CMake-based C++ library project that builds on **Linux**, and can be consumed via `find_package()` after installation.
 
-## Initial equirements
+## Initial requirements
 
 (Obviously can be changed in CMakeLists.txt)
 
