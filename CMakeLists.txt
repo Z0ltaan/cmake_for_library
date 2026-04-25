@@ -7,6 +7,8 @@ project(
 include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)
 
+# NOTE: file glob should be replaced with regular sources list that is updated manually
+# it is done in this way because there is no way of knowing what files are in th actual project
 file(GLOB_RECURSE CONFIGURE_DEPENDS src_files CONFIGURE_DEPENDS
      ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 add_library(${PROJECT_NAME} STATIC ${src_files})
