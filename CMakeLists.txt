@@ -12,6 +12,7 @@ include(CMakePackageConfigHelpers)
 file(GLOB_RECURSE CONFIGURE_DEPENDS src_files CONFIGURE_DEPENDS
      ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 add_library(${PROJECT_NAME} STATIC ${src_files})
+add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
 target_include_directories(
