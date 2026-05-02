@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.22)
 project(
   blank
-  VERSION 0.0.1
+  VERSION 0.1.0
   LANGUAGES CXX)
 
 include(GNUInstallDirs)
@@ -28,7 +28,7 @@ configure_package_config_file(
 
 write_basic_package_version_file(
   ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake
-  VERSION "${PORTAUDIO_VERSION}"
+  VERSION "${PROJECT_VERSION}"
   COMPATIBILITY SameMajorVersion)
 
 install(
